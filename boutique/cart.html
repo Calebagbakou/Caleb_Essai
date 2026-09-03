@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panier | Caleb Creative Shop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray">
+
+  <!-- EN-TÊTE -->
+  <header class="shop-header">
+    <div class="shop-wrap header-inner">
+      <a href="index.html" class="shop-logo">
+        <span class="logo-icon">CC</span>
+        <span class="logo-text">Boutique</span>
+      </a>
+      <nav class="shop-nav">
+        <a href="index.html" class="nav-link-back">Continuer les achats</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- PANIER -->
+  <main class="shop-main shop-wrap">
+    <h1 class="page-title">Votre Panier</h1>
+
+    <div class="cart-layout" id="cartLayout">
+      <!-- Liste des articles -->
+      <div class="cart-items-container">
+        <div id="cartItemsList">
+          <!-- Injecté via JS -->
+        </div>
+      </div>
+
+      <!-- Résumé -->
+      <div class="cart-summary-container">
+        <div class="cart-summary">
+          <h3>Résumé de la commande</h3>
+          <div class="summary-row">
+            <span>Sous-total</span>
+            <span id="cartSubtotal">0 FCFA</span>
+          </div>
+          <div class="summary-row total-row">
+            <span>Total</span>
+            <span id="cartTotal">0 FCFA</span>
+          </div>
+
+          <!-- Checkout Form -->
+          <form id="checkoutForm" class="checkout-form">
+            <h4>Informations de contact</h4>
+            <div class="form-group">
+              <label for="clientName">Nom complet</label>
+              <input type="text" id="clientName" required placeholder="Ex: Jean Dupont">
+            </div>
+            <div class="form-group">
+              <label for="clientPhone">Numéro WhatsApp</label>
+              <input type="tel" id="clientPhone" required placeholder="+229...">
+            </div>
+            <p class="checkout-note">Le paiement s'effectuera via WhatsApp (Mobile Money / Virement).</p>
+            <button type="submit" class="btn btn-primary btn-block" id="checkoutBtn" disabled>Passer la commande</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="shop-footer">
+    <div class="shop-wrap">
+      <p>© 2026 Caleb Creative Shop.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if(typeof renderCartPage === 'function') {
+        renderCartPage();
+      }
+    });
+  </script>
+</body>
+</html>

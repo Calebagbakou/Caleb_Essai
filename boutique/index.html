@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boutique | Caleb Creative</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- EN-TÊTE -->
+  <header class="shop-header">
+    <div class="shop-wrap header-inner">
+      <a href="index.html" class="shop-logo">
+        <span class="logo-icon">CC</span>
+        <span class="logo-text">Boutique</span>
+      </a>
+      <nav class="shop-nav">
+        <a href="../index.html" class="nav-link-back">&larr; Retour au portfolio</a>
+        <a href="cart.html" class="cart-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+          <span class="cart-count" id="cartCount">0</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO BOUTIQUE -->
+  <section class="shop-hero">
+    <div class="shop-wrap">
+      <h1>Boostez votre créativité.</h1>
+      <p>Découvrez nos licences et outils professionnels au meilleur prix.</p>
+    </div>
+  </section>
+
+  <!-- CATALOGUE -->
+  <main class="shop-main shop-wrap">
+    <div class="section-head">
+      <h2>Nos Outils Premium</h2>
+      <div class="filters" id="categoryFilters">
+        <button class="filter-btn active" data-cat="all">Tout</button>
+        <button class="filter-btn" data-cat="ia">Intelligence Artificielle</button>
+        <button class="filter-btn" data-cat="video">Vidéo & Design</button>
+      </div>
+    </div>
+
+    <!-- GRILLE PRODUITS (Injectée via JS) -->
+    <div class="products-grid" id="productsGrid">
+      <!-- Les produits seront générés ici -->
+    </div>
+  </main>
+
+  <!-- PIED DE PAGE -->
+  <footer class="shop-footer">
+    <div class="shop-wrap">
+      <p>© 2026 Caleb Creative Shop. Aucun paiement réel n'est traité directement sur ce site.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

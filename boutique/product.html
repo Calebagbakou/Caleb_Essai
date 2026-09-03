@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produit | Caleb Creative Shop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- EN-TÊTE -->
+  <header class="shop-header">
+    <div class="shop-wrap header-inner">
+      <a href="index.html" class="shop-logo">
+        <span class="logo-icon">CC</span>
+        <span class="logo-text">Boutique</span>
+      </a>
+      <nav class="shop-nav">
+        <a href="index.html" class="nav-link-back">Catalogue</a>
+        <a href="cart.html" class="cart-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+          <span class="cart-count" id="cartCount">0</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- DÉTAIL PRODUIT -->
+  <main class="shop-main shop-wrap product-detail-page">
+    <a href="index.html" class="back-link">&larr; Retour aux produits</a>
+
+    <div class="product-layout" id="productDetailContainer">
+      <!-- Injecté via JS -->
+      <div class="product-loading">Chargement du produit...</div>
+    </div>
+  </main>
+
+  <footer class="shop-footer">
+    <div class="shop-wrap">
+      <p>© 2026 Caleb Creative Shop.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Script spécifique à la page produit pour initialiser l'affichage
+    document.addEventListener('DOMContentLoaded', () => {
+      if(typeof renderProductPage === 'function') {
+        renderProductPage();
+      }
+    });
+  </script>
+</body>
+</html>
