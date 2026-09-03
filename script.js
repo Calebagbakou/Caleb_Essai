@@ -25,13 +25,24 @@
     menuBtn.setAttribute('aria-expanded', String(opening));
     menuBtn.setAttribute('aria-label', opening ? 'Fermer le menu' : 'Ouvrir le menu');
     navOverlay.classList.toggle('open', opening);
+    document.body.classList.toggle('nav-open', opening);
     document.body.style.overflow = opening ? 'hidden' : '';
   });
 
-  /* ---------- Header stays fixed & visible at all times; just add a deeper shadow once scrolled ---------- */
+  /* ---------- Header Smart Scroll ---------- */
   const siteHeader = document.getElementById('siteHeader');
+  let lastScrollY = window.scrollY;
   function updateHeaderShadow(){
-    siteHeader.classList.toggle('scrolled', window.scrollY > 8);
+    const currentScrollY = window.scrollY;
+    siteHeader.classList.toggle('scrolled', currentScrollY > 8);
+
+    // Hide header on scroll down, show on scroll up
+    if (currentScrollY > lastScrollY && currentScrollY > 100 && !document.body.classList.contains('nav-open')) {
+      siteHeader.classList.add('hidden-nav');
+    } else if (currentScrollY < lastScrollY || currentScrollY <= 100) {
+      siteHeader.classList.remove('hidden-nav');
+    }
+    lastScrollY = currentScrollY;
   }
   document.addEventListener('scroll', updateHeaderShadow, { passive:true });
   updateHeaderShadow();
@@ -132,13 +143,25 @@
       if (!entry.isIntersecting) return;
       const el = entry.target;
       const target = parseInt(el.dataset.count, 10);
-      const duration = 1100;
+      const duration = target > 50 ? 2000 : 1200; // longer for bigger numbers
+
+      if (prefersReduced) {
+        el.textContent = target;
+        counterIO.unobserve(el);
+        return;
+      }
+
       const start = performance.now();
       function tick(now){
         const p = Math.min((now - start) / duration, 1);
-        const eased = 1 - Math.pow(1 - p, 3);
+        // smooth cubic-bezier like ease-out
+        const eased = 1 - Math.pow(1 - p, 4);
         el.textContent = Math.round(eased * target);
-        if (p < 1) requestAnimationFrame(tick);
+        if (p < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          el.textContent = target;
+        }
       }
       requestAnimationFrame(tick);
       counterIO.unobserve(el);
