@@ -1,34 +1,36 @@
+  @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800&family=Inter:wght@400;500;600;700&display=swap');
+
   :root{
-    --ink:#0A1626;
-    --ink-alt:#0F1E32;
-    --panel:#132135;
-    --panel-line: rgba(212,192,150,0.14);
-    --teal:#4ADE80;
-    --teal-dim: rgba(74,222,128,0.16);
-    --orange:#22C55E;
-    --orange-dim: rgba(34,197,94,0.16);
-    --violet:#7C93AD;
-    --violet-dim: rgba(124,147,173,0.14);
-    --paper:#F3EEE0;
-    --paper-dim: rgba(243,238,224,0.64);
-    --paper-faint: rgba(243,238,224,0.4);
-    --brand-grad: linear-gradient(120deg, #BBF7D0, var(--teal) 60%, var(--orange));
+    --ink:#080808;
+    --ink-alt:#111111;
+    --panel:#1A1A1A;
+    --panel-line: rgba(255,255,255,0.1);
+    --teal:#ccff00;
+    --teal-dim: rgba(204,255,0,0.15);
+    --orange:#ccff00;
+    --orange-dim: rgba(204,255,0,0.15);
+    --violet:#555555;
+    --violet-dim: rgba(255,255,255,0.05);
+    --paper:#FFFFFF;
+    --paper-dim: rgba(255,255,255,0.7);
+    --paper-faint: rgba(255,255,255,0.4);
+    --brand-grad: linear-gradient(120deg, #ccff00, #99cc00);
   }
 
   html[data-theme="light"]{
-    --ink:#F6F2E6;
-    --ink-alt:#EDE6D2;
+    --ink:#F9F9F9;
+    --ink-alt:#EEEEEE;
     --panel:#FFFFFF;
-    --panel-line: rgba(10,22,38,0.12);
-    --teal:#16A34A;
-    --teal-dim: rgba(22,163,74,0.12);
-    --orange:#15803D;
-    --orange-dim: rgba(21,128,61,0.12);
-    --violet:#3D5A78;
-    --violet-dim: rgba(61,90,120,0.1);
-    --paper:#0A1626;
-    --paper-dim: rgba(10,22,38,0.64);
-    --paper-faint: rgba(10,22,38,0.42);
+    --panel-line: rgba(0,0,0,0.1);
+    --teal:#000000;
+    --teal-dim: rgba(0,0,0,0.05);
+    --orange:#000000;
+    --orange-dim: rgba(0,0,0,0.05);
+    --violet:#888888;
+    --violet-dim: rgba(0,0,0,0.05);
+    --paper:#080808;
+    --paper-dim: rgba(8,8,8,0.7);
+    --paper-faint: rgba(8,8,8,0.4);
   }
 
   html, html[data-theme]{
@@ -84,7 +86,10 @@
   .hero-photo-ring{ transition: transform .5s cubic-bezier(.16,.8,.24,1); }
   .hero-photo:hover .hero-photo-ring{ transform: perspective(600px) rotateY(10deg) rotateX(-4deg) scale(1.03); }
 
-  h1, .sec-title{ text-wrap: balance; }
+  h1, .sec-title{
+    text-wrap: balance;
+    font-family: 'Unbounded', sans-serif;
+  }
 
   /* ---------- SITE HEADER (always fixed, never hidden on scroll) ---------- */
   .site-header{
@@ -122,7 +127,7 @@
     width:34px; height:34px; border-radius:9px; flex-shrink:0;
     background: var(--brand-grad);
     display:flex; align-items:center; justify-content:center;
-    font-family:'Montserrat', sans-serif; font-weight:800; font-size:14px;
+    font-family:'Unbounded', sans-serif; font-weight:800; font-size:14px;
     color:var(--ink); letter-spacing:-0.02em;
   }
   .brand-name{
@@ -216,9 +221,9 @@
   .nav-foot .footer-note{ display:inline; }
   main.hero-main{ position:relative; z-index:1; padding-top: 56px; }
   h1{
-    font-family:'Montserrat', sans-serif; font-weight:700;
-    font-size: clamp(2rem, 8vw, 2.6rem); line-height:1.12; letter-spacing:-0.01em;
-    margin:0 0 18px; max-width: 11ch;
+    font-family:'Unbounded', sans-serif; font-weight:800;
+    font-size: clamp(2.5rem, 8vw, 3.5rem); line-height:1.1; letter-spacing:-0.02em;
+    margin:0 0 24px; max-width: 14ch;
   }
   h1 em{ font-style:normal; color:var(--orange); }
   .type-cursor{ color:var(--orange); font-weight:400; animation: blink 1s steps(1) infinite; }
@@ -277,17 +282,17 @@
   .chapter.active{ color:var(--paper); border-top-color:var(--teal); }
 
   /* ---------- SHARED SECTION STYLES ---------- */
-  section{ padding: 64px 24px; }
+  section{ padding: 96px 24px; }
   section.alt{ background: var(--ink-alt); }
-  .sec-head{ margin-bottom:32px; }
+  .sec-head{ margin-bottom:48px; }
   .sec-eyebrow{
-    font-family:'Poppins', monospace; font-size:12px; letter-spacing:0.08em;
-    color:var(--teal); display:flex; align-items:center; gap:8px; margin-bottom:14px;
+    font-family:'Inter', sans-serif; font-weight:700; font-size:12px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--teal); display:flex; align-items:center; gap:8px; margin-bottom:16px;
   }
-  .sec-eyebrow::before{ content:"//"; color:var(--orange); }
+  .sec-eyebrow::before{ content:"/"; color:var(--orange); }
   .sec-title{
-    font-family:'Montserrat', sans-serif; font-weight:600; font-size: clamp(1.4rem, 5vw, 1.9rem);
-    line-height:1.2; margin:0; max-width:20ch;
+    font-family:'Unbounded', sans-serif; font-weight:800; font-size: clamp(1.8rem, 5vw, 2.8rem);
+    line-height:1.15; margin:0; max-width:22ch;
   }
 
   /* ---------- STATS (filmstrip) ---------- */
