@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Messages — Admin Caleb Creative</title>
+<link rel="stylesheet" href="assets/admin.css">
+</head>
+<body>
+
+<div class="admin-shell">
+  <aside class="admin-sidebar">
+    <div class="admin-brand">
+      <span class="admin-brand-mark">CA</span>
+      <span class="admin-brand-text">Admin</span>
+    </div>
+
+    <nav class="admin-nav">
+      <a href="index.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+        Dashboard
+      </a>
+
+      <div class="admin-nav-label">Portfolio</div>
+      <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M3 13l5-4 4 3 5-5 4 3"/></svg>Projets<span class="soon">bientôt</span></a>
+      <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l2.5 6.5H21l-5.3 4 2 6.5-5.7-4-5.7 4 2-6.5L3 8.5h6.5z"/></svg>Compétences<span class="soon">bientôt</span></a>
+      <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>Services<span class="soon">bientôt</span></a>
+
+      <div class="admin-nav-label">Médias</div>
+      <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Images<span class="soon">bientôt</span></a>
+      <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="14" height="14" rx="2"/><path d="M17 9l4-2v10l-4-2"/></svg>Vidéos<span class="soon">bientôt</span></a>
+
+      <div class="admin-nav-label">Boutique</div>
+      <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3h2l2.4 12.4a2 2 0 002 1.6h8.2a2 2 0 002-1.6L21 8H6"/><circle cx="9" cy="20" r="1.4"/><circle cx="17" cy="20" r="1.4"/></svg>Produits<span class="soon">bientôt</span></a>
+      <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/></svg>Commandes<span class="soon">bientôt</span></a>
+      <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>Clients<span class="soon">bientôt</span></a>
+
+      <div class="admin-nav-label">Général</div>
+      <a href="messages.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l1.3-4A8 8 0 1112 20a8 8 0 01-4-1z"/></svg>Messages</a>
+      <a href="parametres.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 11-4 0v-.09A1.65 1.65 0 009.6 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 110-4h.09A1.65 1.65 0 004.6 8.6a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 114 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 110 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>Paramètres</a>
+    </nav>
+
+    <button class="admin-logout" id="logoutBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>
+      Déconnexion
+    </button>
+  </aside>
+
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <h1>Messages</h1>
+      <span class="who" id="whoBox"></span>
+    </div>
+
+    <div class="panel">
+      <h2>Messages reçus depuis le formulaire de contact</h2>
+      <p>Clique sur un message pour le lire (il sera marqué comme lu automatiquement).</p>
+
+      <div id="loadingBox" class="state-box">Chargement…</div>
+      <div id="errorBox" class="state-box error" style="display:none;"></div>
+      <div id="emptyBox" class="state-box" style="display:none;">Aucun message pour l'instant.</div>
+
+      <div class="data-table-wrap" id="tableWrap" style="display:none;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Statut</th>
+              <th>Nom</th>
+              <th>Date</th>
+              <th>Contact</th>
+              <th>Aperçu</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div class="modal-backdrop" id="modalBackdrop" style="display:none;">
+  <div class="modal-box">
+    <h2 id="modalName"></h2>
+    <p class="save-msg" id="modalMeta" style="color:var(--ink-dim);"></p>
+    <div class="msg-body" id="modalContent"></div>
+    <div class="modal-actions">
+      <button class="btn btn-secondary btn-sm" id="modalToggleRead"></button>
+      <button class="btn btn-danger btn-sm" id="modalDelete">Supprimer</button>
+      <button class="btn btn-primary btn-sm" id="modalClose">Fermer</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../assets/supabase-config.js"></script>
+<script src="../assets/supabase-client.js"></script>
+<script src="assets/auth.js"></script>
+<script>
+(async () => {
+  const user = await requireAdminSession();
+  if (!user) return;
+  document.getElementById('whoBox').textContent = user.email;
+  document.getElementById('logoutBtn').addEventListener('click', logout);
+
+  const supabase = getSupabase();
+  const loadingBox = document.getElementById('loadingBox');
+  const errorBox = document.getElementById('errorBox');
+  const emptyBox = document.getElementById('emptyBox');
+  const tableWrap = document.getElementById('tableWrap');
+  const tbody = document.getElementById('tbody');
+
+  const modalBackdrop = document.getElementById('modalBackdrop');
+  const modalName = document.getElementById('modalName');
+  const modalMeta = document.getElementById('modalMeta');
+  const modalContent = document.getElementById('modalContent');
+  const modalToggleRead = document.getElementById('modalToggleRead');
+  const modalDelete = document.getElementById('modalDelete');
+  const modalClose = document.getElementById('modalClose');
+
+  let messages = [];
+  let currentId = null;
+
+  function fmtDate(iso){
+    try{
+      return new Date(iso).toLocaleString('fr-FR', { day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit' });
+    }catch(e){ return iso; }
+  }
+
+  function render(){
+    tbody.innerHTML = '';
+    if (messages.length === 0){
+      emptyBox.style.display = 'block';
+      tableWrap.style.display = 'none';
+      return;
+    }
+    emptyBox.style.display = 'none';
+    tableWrap.style.display = 'block';
+
+    for (const m of messages){
+      const tr = document.createElement('tr');
+      if (!m.is_read) tr.classList.add('is-unread');
+      const preview = (m.content || '').slice(0, 60) + ((m.content || '').length > 60 ? '…' : '');
+      tr.innerHTML = `
+        <td><span class="badge ${m.is_read ? 'badge-read' : 'badge-unread'}">${m.is_read ? 'Lu' : 'Non lu'}</span></td>
+        <td>${escapeHtml(m.name)}</td>
+        <td>${fmtDate(m.created_at)}</td>
+        <td>${escapeHtml(m.email || m.phone || '—')}</td>
+        <td>${escapeHtml(preview)}</td>
+        <td class="row-actions">
+          <button class="btn btn-secondary btn-sm" data-open="${m.id}">Voir</button>
+          <button class="btn btn-danger btn-sm" data-del="${m.id}">Supprimer</button>
+        </td>
+      `;
+      tbody.appendChild(tr);
+    }
+
+    tbody.querySelectorAll('[data-open]').forEach(btn => {
+      btn.addEventListener('click', () => openModal(btn.dataset.open));
+    });
+    tbody.querySelectorAll('[data-del]').forEach(btn => {
+      btn.addEventListener('click', () => deleteMessage(btn.dataset.del));
+    });
+  }
+
+  function escapeHtml(str){
+    const div = document.createElement('div');
+    div.textContent = str ?? '';
+    return div.innerHTML;
+  }
+
+  async function openModal(id){
+    const m = messages.find(x => x.id === id);
+    if (!m) return;
+    currentId = id;
+    modalName.textContent = m.name;
+    modalMeta.textContent = [m.email, m.phone, fmtDate(m.created_at)].filter(Boolean).join(' · ');
+    modalContent.textContent = m.content;
+    modalToggleRead.textContent = m.is_read ? 'Marquer non lu' : 'Marquer lu';
+    modalBackdrop.style.display = 'flex';
+
+    if (!m.is_read){
+      const { error } = await supabase.from('messages').update({ is_read: true }).eq('id', id);
+      if (!error){
+        m.is_read = true;
+        modalToggleRead.textContent = 'Marquer non lu';
+        render();
+      }
+    }
+  }
+
+  modalToggleRead.addEventListener('click', async () => {
+    const m = messages.find(x => x.id === currentId);
+    if (!m) return;
+    const newVal = !m.is_read;
+    const { error } = await supabase.from('messages').update({ is_read: newVal }).eq('id', currentId);
+    if (!error){
+      m.is_read = newVal;
+      modalToggleRead.textContent = m.is_read ? 'Marquer non lu' : 'Marquer lu';
+      render();
+    }
+  });
+
+  modalDelete.addEventListener('click', async () => {
+    if (!currentId) return;
+    if (!confirm('Supprimer définitivement ce message ?')) return;
+    await deleteMessage(currentId);
+    modalBackdrop.style.display = 'none';
+  });
+
+  modalClose.addEventListener('click', () => { modalBackdrop.style.display = 'none'; });
+  modalBackdrop.addEventListener('click', (e) => { if (e.target === modalBackdrop) modalBackdrop.style.display = 'none'; });
+
+  async function deleteMessage(id){
+    if (id === currentId ? true : confirm('Supprimer définitivement ce message ?')){
+      const { error } = await supabase.from('messages').delete().eq('id', id);
+      if (error){
+        alert('Erreur lors de la suppression : ' + error.message);
+        return;
+      }
+      messages = messages.filter(m => m.id !== id);
+      render();
+    }
+  }
+
+  async function load(){
+    loadingBox.style.display = 'block';
+    errorBox.style.display = 'none';
+    emptyBox.style.display = 'none';
+    tableWrap.style.display = 'none';
+
+    const { data, error } = await supabase
+      .from('messages')
+      .select('id, name, email, phone, content, is_read, created_at')
+      .order('created_at', { ascending: false });
+
+    loadingBox.style.display = 'none';
+
+    if (error){
+      console.error(error);
+      errorBox.textContent = 'Erreur de chargement : ' + error.message;
+      errorBox.style.display = 'block';
+      return;
+    }
+
+    messages = data || [];
+    render();
+  }
+
+  load();
+})();
+</script>
+</body>
+</html>
