@@ -194,82 +194,6 @@
     });
   });
 
-  /* ---------- Portfolio: jump pills scroll to matching row ---------- */
-  const jumpButtons = document.querySelectorAll('.filter-btn');
-  jumpButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      jumpButtons.forEach(b => b.classList.toggle('active', b === btn));
-      const target = document.getElementById(btn.dataset.target);
-      if (target) target.scrollIntoView({ behavior:'smooth', block:'start' });
-    });
-  });
-
-  /* ---------- Drag-to-scroll on each horizontal portfolio row ---------- */
-  document.querySelectorAll('.p-row-scroll').forEach(row => {
-    let isDown = false, startX = 0, startScroll = 0, moved = false;
-    row.addEventListener('pointerdown', (e) => {
-      isDown = true; moved = false;
-      startX = e.clientX; startScroll = row.scrollLeft;
-      row.classList.add('dragging');
-    });
-    row.addEventListener('pointermove', (e) => {
-      if (!isDown) return;
-      const dx = e.clientX - startX;
-      if (Math.abs(dx) > 4) moved = true;
-      row.scrollLeft = startScroll - dx;
-    });
-    function stopDrag(){ isDown = false; row.classList.remove('dragging'); }
-    row.addEventListener('pointerup', stopDrag);
-    row.addEventListener('pointerleave', stopDrag);
-    row.addEventListener('pointercancel', stopDrag);
-    // prevent the click that opens the lightbox from firing right after a drag
-    row.addEventListener('click', (e) => { if (moved) { e.stopPropagation(); e.preventDefault(); } }, true);
-  });
-
-  /* ---------- Fullscreen lightbox viewer ---------- */
-  const allCards = Array.from(document.querySelectorAll('.p-card'));
-  const lightbox = document.getElementById('lightbox');
-  const lightboxThumb = document.getElementById('lightboxThumb');
-  const lightboxCat = document.getElementById('lightboxCat');
-  const lightboxTitle = document.getElementById('lightboxTitle');
-  let lightboxIndex = 0;
-
-  function openLightbox(index){
-    lightboxIndex = (index + allCards.length) % allCards.length;
-    const card = allCards[lightboxIndex];
-    const thumb = card.querySelector('.p-thumb');
-    const videoUrl = card.dataset.video;
-    if (videoUrl){
-      lightboxThumb.style.background = '#000';
-      lightboxThumb.innerHTML = `<iframe src="${videoUrl}" width="100%" height="100%" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute; inset:0;"></iframe>`;
-    } else {
-      lightboxThumb.style.background = thumb.style.background;
-      lightboxThumb.innerHTML = '';
-    }
-    lightboxCat.textContent = card.querySelector('.p-cat').textContent;
-    lightboxTitle.textContent = card.dataset.title || card.querySelector('.p-title').textContent;
-    lightbox.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeLightbox(){
-    lightbox.classList.remove('open');
-    lightboxThumb.innerHTML = ''; // stoppe la lecture de la vidéo en coupant l'iframe
-    document.body.style.overflow = '';
-  }
-  allCards.forEach((card, i) => {
-    card.addEventListener('click', () => openLightbox(i));
-  });
-  document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
-  document.getElementById('lightboxPrev').addEventListener('click', () => openLightbox(lightboxIndex - 1));
-  document.getElementById('lightboxNext').addEventListener('click', () => openLightbox(lightboxIndex + 1));
-  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
-  document.addEventListener('keydown', (e) => {
-    if (!lightbox.classList.contains('open')) return;
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowLeft') openLightbox(lightboxIndex - 1);
-    if (e.key === 'ArrowRight') openLightbox(lightboxIndex + 1);
-  });
-
   /* ---------- Hero chapters: quick scrub animation, then jump to matching section ---------- */
   const chapterBtns = document.querySelectorAll('.chapter');
   const scrubTrack = document.querySelector('.scrub-track');
@@ -348,3 +272,213 @@
       card.addEventListener('mouseleave', () => { card.style.transform = ''; });
     });
   }
+
+
+/* ---------- Dynamic Portfolio Rendering ---------- */
+document.addEventListener('DOMContentLoaded', async () => {
+  const supabase = window.getSupabase ? window.getSupabase() : null;
+  if (!supabase) return;
+
+  const filtersContainer = document.getElementById('portfolioFilters');
+  const gridContainer = document.getElementById('grid');
+  if (!filtersContainer || !gridContainer) return;
+
+  try {
+    // Fetch categories and projects
+    const [catRes, projRes, mediaRes] = await Promise.all([
+      supabase.from('categories').select('*').eq('scope', 'portfolio').order('sort_order', { ascending: true }),
+      supabase.from('projects').select('*').eq('status', 'published').order('sort_order', { ascending: true }),
+      supabase.from('media').select('*')
+    ]);
+
+    const categories = catRes.data || [];
+    const projects = projRes.data || [];
+    const medias = mediaRes.data || [];
+
+    // Map media to easier lookup
+    const mediaMap = {};
+    medias.forEach(m => mediaMap[m.id] = m);
+
+    // Group projects by category
+    const projectsByCat = {};
+    categories.forEach(c => projectsByCat[c.id] = []);
+    projects.forEach(p => {
+      if (p.category_id && projectsByCat[p.category_id]) {
+        projectsByCat[p.category_id].push(p);
+      }
+    });
+
+    // Generate HTML
+    let filtersHtml = '';
+    let gridHtml = '';
+    let isFirst = true;
+
+    categories.forEach(cat => {
+      const catProjects = projectsByCat[cat.id];
+      if (catProjects.length === 0) return; // Skip empty categories
+
+      // Filter button
+      filtersHtml += `<button class="filter-btn ${isFirst ? 'active' : ''}" data-target="row-${cat.slug}">${escapeHtml(cat.label)}</button>`;
+
+      // Row
+      gridHtml += `
+        <div class="p-row" id="row-${cat.slug}">
+          <div class="p-row-head"><h3>${escapeHtml(cat.label)}</h3><span class="p-row-count">${catProjects.length} réalisation${catProjects.length > 1 ? 's' : ''}</span></div>
+          <div class="p-row-scroll">
+      `;
+
+      catProjects.forEach(p => {
+        const cover = p.cover_media_id ? mediaMap[p.cover_media_id] : null;
+        const video = p.video_media_id ? mediaMap[p.video_media_id] : null;
+
+        let coverBg = cover ? `background: url('${cover.external_url}') center/cover no-repeat;` : 'background:linear-gradient(135deg,#1F3350,#4ADE80);';
+        let videoData = video && video.external_url ? `data-video="${escapeHtml(video.external_url)}"` : '';
+
+        let playIcon = videoData ? `<span class="p-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>` : '';
+
+        gridHtml += `
+            <div class="p-card" data-cat="${escapeHtml(cat.slug)}" data-title="${escapeHtml(p.title)}" ${videoData}>
+              <span class="p-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg></span>
+              <div class="p-thumb" style="${coverBg}">
+                <span>${escapeHtml(cat.label.toUpperCase())}</span>
+                ${playIcon}
+              </div>
+              <div class="p-body"><div class="p-cat">${escapeHtml(cat.label.toUpperCase())}</div><h3 class="p-title">${escapeHtml(p.title)}</h3></div>
+            </div>
+        `;
+      });
+
+      gridHtml += `
+          </div>
+        </div>
+      `;
+      isFirst = false;
+    });
+
+    filtersContainer.innerHTML = filtersHtml;
+    gridContainer.innerHTML = gridHtml;
+
+    // Re-bind events for the newly added dynamic elements
+    bindPortfolioEvents();
+
+  } catch (err) {
+    console.error("Error loading portfolio:", err);
+  }
+});
+
+function escapeHtml(str){
+  const div = document.createElement('div');
+  div.textContent = str ?? '';
+  return div.innerHTML;
+}
+
+function bindPortfolioEvents() {
+  const jumpButtons = document.querySelectorAll('.filter-btn');
+  jumpButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      jumpButtons.forEach(b => b.classList.toggle('active', b === btn));
+      const target = document.getElementById(btn.dataset.target);
+      if (target) target.scrollIntoView({ behavior:'smooth', block:'start' });
+    });
+  });
+
+  document.querySelectorAll('.p-row-scroll').forEach(row => {
+    let isDown = false, startX = 0, startScroll = 0, moved = false;
+    row.addEventListener('pointerdown', (e) => {
+      isDown = true; moved = false;
+      startX = e.clientX; startScroll = row.scrollLeft;
+      row.classList.add('dragging');
+    });
+    row.addEventListener('pointermove', (e) => {
+      if (!isDown) return;
+      const dx = e.clientX - startX;
+      if (Math.abs(dx) > 4) moved = true;
+      row.scrollLeft = startScroll - dx;
+    });
+    function stopDrag(){ isDown = false; row.classList.remove('dragging'); }
+    row.addEventListener('pointerup', stopDrag);
+    row.addEventListener('pointerleave', stopDrag);
+    row.addEventListener('pointercancel', stopDrag);
+    row.addEventListener('click', (e) => { if (moved) { e.stopPropagation(); e.preventDefault(); } }, true);
+  });
+
+
+  const allCards = Array.from(document.querySelectorAll('.p-card'));
+  const lightbox = document.getElementById('lightbox');
+  const lightboxThumb = document.getElementById('lightboxThumb');
+  const lightboxCat = document.getElementById('lightboxCat');
+  const lightboxTitle = document.getElementById('lightboxTitle');
+  let lightboxIndex = 0;
+
+  function openLightbox(index){
+    lightboxIndex = (index + allCards.length) % allCards.length;
+    const card = allCards[lightboxIndex];
+    const thumb = card.querySelector('.p-thumb');
+    const videoUrl = card.dataset.video;
+    if (videoUrl){
+      lightboxThumb.style.background = '#000';
+      lightboxThumb.innerHTML = `<iframe src="${getEmbedUrl(videoUrl)}" width="100%" height="100%" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute; inset:0;"></iframe>`;
+    } else {
+      lightboxThumb.style.background = thumb.style.background;
+      lightboxThumb.innerHTML = '';
+    }
+    lightboxCat.textContent = card.querySelector('.p-cat').textContent;
+    lightboxTitle.textContent = card.dataset.title || card.querySelector('.p-title').textContent;
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox(){
+    lightbox.classList.remove('open');
+    lightboxThumb.innerHTML = '';
+    document.body.style.overflow = '';
+  }
+
+  allCards.forEach((card, i) => {
+    // Only add if not already added to avoid duplicates
+    if (!card.dataset.bound) {
+      card.addEventListener('click', () => openLightbox(i));
+      card.dataset.bound = "true";
+    }
+  });
+
+  // Since these are static elements, only bind once globally
+  if (!window.lightboxBound) {
+    document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+    document.getElementById('lightboxPrev').addEventListener('click', () => openLightbox(lightboxIndex - 1));
+    document.getElementById('lightboxNext').addEventListener('click', () => openLightbox(lightboxIndex + 1));
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') openLightbox(lightboxIndex - 1);
+      if (e.key === 'ArrowRight') openLightbox(lightboxIndex + 1);
+    });
+    window.lightboxBound = true;
+  }
+
+// Re-run scroll reveal observers on new items
+  const revealTargets = document.querySelectorAll('.p-card, .p-row');
+  revealTargets.forEach(el => el.classList.add('reveal'));
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  revealTargets.forEach(el => io.observe(el));
+}
+
+
+function getEmbedUrl(url) {
+  if (url.includes('youtube.com/watch')) {
+    const urlParams = new URLSearchParams(new URL(url).search);
+    return 'https://www.youtube.com/embed/' + urlParams.get('v');
+  } else if (url.includes('youtu.be/')) {
+    const id = url.split('youtu.be/')[1].split('?')[0];
+    return 'https://www.youtube.com/embed/' + id;
+  }
+  return url;
+}
