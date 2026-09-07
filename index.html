@@ -211,7 +211,7 @@
     <h2 class="sec-title">Quelques réalisations récentes.</h2>
   </div>
 
-  <div class="filters">
+  <div class="filters" id="portfolioFilters">
     <button class="filter-btn active" data-target="row-images">Images IA</button>
     <button class="filter-btn" data-target="row-videos">Vidéos IA</button>
     <button class="filter-btn" data-target="row-motion">Motion Design</button>
@@ -221,134 +221,7 @@
     <button class="filter-btn" data-target="row-retouches">Retouches photo</button>
   </div>
 
-  <div class="portfolio-rows" id="grid">
-
-    <div class="p-row" id="row-images">
-      <div class="p-row-head"><h3>Images IA</h3><span class="p-row-count">3 réalisations</span></div>
-      <div class="p-row-scroll">
-        <div class="p-card" data-cat="images" data-title="Campagne Aurora">
-          <span class="p-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg></span>
-          <div class="p-thumb" style="background:linear-gradient(135deg,#1F3350,#4ADE80);"><span>IMAGES IA</span></div>
-          <div class="p-body"><div class="p-cat">IMAGES IA</div><h3 class="p-title">Campagne Aurora</h3></div>
-        </div>
-        <div class="p-card" data-cat="images" data-title="Portraits studio">
-          <span class="p-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg></span>
-          <div class="p-thumb" style="background:linear-gradient(135deg,#4ADE80,#16283F);"><span>IMAGES IA</span></div>
-          <div class="p-body"><div class="p-cat">IMAGES IA</div><h3 class="p-title">Portraits studio</h3></div>
-        </div>
-        <div class="p-card" data-cat="images" data-title="Visuels produit">
-          <span class="p-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg></span>
-          <div class="p-thumb" style="background:linear-gradient(135deg,#166534,#24405F);"><span>IMAGES IA</span></div>
-          <div class="p-body"><div class="p-cat">IMAGES IA</div><h3 class="p-title">Visuels produit</h3></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="p-row" id="row-videos">
-      <div class="p-row-head"><h3>Vidéos IA</h3><span class="p-row-count">3 réalisations</span></div>
-      <div class="p-row-scroll">
-        <div class="p-card" data-cat="videos" data-title="Teaser produit" data-video="https://player.vimeo.com/video/1223912721?h=7443aab3a0&title=0&byline=0&portrait=0">
-          <span class="p-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg></span>
-          <div class="p-thumb" style="background:linear-gradient(135deg,#16283F,#2C4A66);">
-            <span>VIDÉO IA</span>
-            <span class="p-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-          </div>
-          <div class="p-body"><div class="p-cat">VIDÉOS IA</div><h3 class="p-title">Teaser produit</h3></div>
-        </div>
-        <div class="p-card" data-cat="videos" data-title="Clip réseaux sociaux">
-          <span class="p-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg></span>
-          <div class="p-thumb" style="background:linear-gradient(135deg,#2C4A66,#16283F);"><span>VIDÉO IA</span></div>
-          <div class="p-body"><div class="p-cat">VIDÉOS IA</div><h3 class="p-title">Clip réseaux sociaux</h3></div>
-        </div>
-        <div class="p-card" data-cat="videos" data-title="Vidéo évènementielle">
-          <span class="p-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg></span>
-          <div class="p-thumb" style="background:linear-gradient(135deg,#0F1E32,#4ADE80);"><span>VIDÉO IA</span></div>
-          <div class="p-body"><div class="p-cat">VIDÉOS IA</div><h3 class="p-title">Vidéo évènementielle</h3></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="p-row" id="row-motion">
-      <div class="p-row-head"><h3>Motion Design</h3><span class="p-row-count">2 réalisations</span></div>
-      <div class="p-row-scroll">
-        <div class="p-card" data-cat="motion" data-title="Motion intro">
-          <span class="p-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg></span>
-          <div class="p-thumb" style="background:linear-gradient(135deg,#4ADE80,#0F1E32);"><span>MOTION</span></div>
-          <div class="p-body"><div class="p-cat">MOTION DESIGN</div><h3 class="p-title">Motion intro</h3></div>
-        </div>
-        <div class="p-card" data-cat="motion" data-title="Habillage logo animé">
-          <span class="p-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg></span>
-          <div class="p-thumb" style="background:linear-gradient(135deg,#0F1E32,#166534);"><span>MOTION</span></div>
-          <div class="p-body"><div class="p-cat">MOTION DESIGN</div><h3 class="p-title">Habillage logo animé</h3></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="p-row" id="row-pub">
-      <div class="p-row-head"><h3>Publicités</h3><span class="p-row-count">2 réalisations</span></div>
-      <div class="p-row-scroll">
-        <div class="p-card" data-cat="pub" data-title="Pub réseaux sociaux">
-          <span class="p-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg></span>
-          <div class="p-thumb" style="background:linear-gradient(135deg,#24405F,#3D5A78);"><span>SOCIAL</span></div>
-          <div class="p-body"><div class="p-cat">PUBLICITÉS</div><h3 class="p-title">Pub réseaux sociaux</h3></div>
-        </div>
-        <div class="p-card" data-cat="pub" data-title="Campagne display">
-          <span class="p-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg></span>
-          <div class="p-thumb" style="background:linear-gradient(135deg,#3D5A78,#22C55E);"><span>SOCIAL</span></div>
-          <div class="p-body"><div class="p-cat">PUBLICITÉS</div><h3 class="p-title">Campagne display</h3></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="p-row" id="row-logos">
-      <div class="p-row-head"><h3>Logos</h3><span class="p-row-count">2 réalisations</span></div>
-      <div class="p-row-scroll">
-        <div class="p-card" data-cat="logos" data-title="Logo Nova Studio">
-          <span class="p-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg></span>
-          <div class="p-thumb" style="background:linear-gradient(135deg,#2C3E52,#4ADE80);"><span>LOGO</span></div>
-          <div class="p-body"><div class="p-cat">LOGOS</div><h3 class="p-title">Logo Nova Studio</h3></div>
-        </div>
-        <div class="p-card" data-cat="logos" data-title="Identité Atlas">
-          <span class="p-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg></span>
-          <div class="p-thumb" style="background:linear-gradient(135deg,#4ADE80,#2C3E52);"><span>LOGO</span></div>
-          <div class="p-body"><div class="p-cat">LOGOS</div><h3 class="p-title">Identité Atlas</h3></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="p-row" id="row-affiches">
-      <div class="p-row-head"><h3>Affiches</h3><span class="p-row-count">2 réalisations</span></div>
-      <div class="p-row-scroll">
-        <div class="p-card" data-cat="affiches" data-title="Affiche événement">
-          <span class="p-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg></span>
-          <div class="p-thumb" style="background:linear-gradient(135deg,#22C55E,#15803D);"><span>AFFICHE</span></div>
-          <div class="p-body"><div class="p-cat">AFFICHES</div><h3 class="p-title">Affiche événement</h3></div>
-        </div>
-        <div class="p-card" data-cat="affiches" data-title="Affiche concert">
-          <span class="p-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg></span>
-          <div class="p-thumb" style="background:linear-gradient(135deg,#15803D,#1F3350);"><span>AFFICHE</span></div>
-          <div class="p-body"><div class="p-cat">AFFICHES</div><h3 class="p-title">Affiche concert</h3></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="p-row" id="row-retouches">
-      <div class="p-row-head"><h3>Retouches photo</h3><span class="p-row-count">2 réalisations</span></div>
-      <div class="p-row-scroll">
-        <div class="p-card" data-cat="retouches" data-title="Retouche portrait">
-          <span class="p-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg></span>
-          <div class="p-thumb" style="background:linear-gradient(135deg,#86EFAC,#22C55E);"><span>RETOUCHE</span></div>
-          <div class="p-body"><div class="p-cat">RETOUCHES PHOTO</div><h3 class="p-title">Retouche portrait</h3></div>
-        </div>
-        <div class="p-card" data-cat="retouches" data-title="Retouche produit">
-          <span class="p-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg></span>
-          <div class="p-thumb" style="background:linear-gradient(135deg,#22C55E,#86EFAC);"><span>RETOUCHE</span></div>
-          <div class="p-body"><div class="p-cat">RETOUCHES PHOTO</div><h3 class="p-title">Retouche produit</h3></div>
-        </div>
-      </div>
-    </div>
-
-  </div>
+  <div class="portfolio-rows" id="grid"></div>
 </section>
 
 <!-- Fullscreen lightbox viewer -->
